@@ -1,0 +1,30 @@
+body{
+  background-color: rgb(201, 214, 224);
+}
+
+.room-container {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .room-card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    text-align: center;
+  }
+  
+  .room-image {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+  }
+  
+  .hotel-image {
+    height: 220px;
+    object-fit: cover;
+  }
+  
+  button span {
+    font-weight: 500;
+  }
+  
