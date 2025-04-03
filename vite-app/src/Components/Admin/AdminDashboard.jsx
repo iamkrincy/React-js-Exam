@@ -18,7 +18,7 @@ const AdminDashboard = () => {
       <h2 className="text-center mt-4">Admin Dashboard</h2>
       
       <div className="text-center mb-3">
-        <Button onClick={() => navigate("/add-room")}>Add Room</Button>
+        <Button variant="dark" onClick={() => navigate("/add-room")}>Add Room</Button>
       </div>
       
       {loading && <Spinner animation="border" />} 

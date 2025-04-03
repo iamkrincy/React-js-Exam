@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addRoomAsync } from "../../Service/Actions/roomActions";
-import { Form, Button, Spinner, Card } from "react-bootstrap";
+import { Form, Button, Spinner, Card, Container, Row, Col } from "react-bootstrap";
 import uploadImage from "../../Service/ImageUpload";
 import { useNavigate } from "react-router";
 
@@ -68,39 +68,65 @@ const AddRoomForm = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit} className="shadow-lg p-4 rounded">
-      <h3>Add New Room</h3>
-      
-      <Form.Group>
-        <Form.Label>Room Name</Form.Label>
-        <Form.Control type="text" name="name" value={roomData.name} onChange={handleChange} isInvalid={!!errors.name} />
-      </Form.Group>
+    <Container className="my-5">
+      <Row className="justify-content-center">
+        <Col md={8}>
+          <Card className="shadow-lg p-4">
+            <Card.Body>
+              <h3 className="text-center mb-4">Add New Room</h3>
+              <Form onSubmit={handleSubmit}>
 
-      {/* Room Type Dropdown */}
-      <Form.Group>
-        <Form.Label>Room Type</Form.Label>
-        <Form.Select name="type" value={roomData.type} onChange={handleChange} isInvalid={!!errors.type}>
-          <option value="">Select Room Type</option>
-          {roomTypes.map((type, index) => (
-            <option key={index} value={type}>{type}</option>
-          ))}
-        </Form.Select>
-      </Form.Group>
+                {/* Room Name */}
+                <Form.Group className="mb-3">
+                  <Form.Label>Room Name</Form.Label>
+                  <Form.Control type="text" name="name" value={roomData.name} onChange={handleChange} isInvalid={!!errors.name} />
+                  <Form.Control.Feedback type="invalid">{errors.name}</Form.Control.Feedback>
+                </Form.Group>
 
-      <Form.Group>
-        <Form.Label>Price</Form.Label>
-        <Form.Control type="number" name="price" value={roomData.price} onChange={handleChange} isInvalid={!!errors.price} />
-      </Form.Group>
+                {/* Room Type */}
+                <Form.Group className="mb-3">
+                  <Form.Label>Room Type</Form.Label>
+                  <Form.Select name="type" value={roomData.type} onChange={handleChange} isInvalid={!!errors.type}>
+                    <option value="">Select Room Type</option>
+                    {roomTypes.map((type, index) => (
+                      <option key={index} value={type}>{type}</option>
+                    ))}
+                  </Form.Select>
+                  <Form.Control.Feedback type="invalid">{errors.type}</Form.Control.Feedback>
+                </Form.Group>
 
-      <Form.Group>
-        <Form.Label>Room Image</Form.Label>
-        <Form.Control type="file" accept="image/*" onChange={handleImageUpload} isInvalid={!!errors.image} />
-      </Form.Group>
+                {/* Price */}
+                <Form.Group className="mb-3">
+                  <Form.Label>Price</Form.Label>
+                  <Form.Control type="number" name="price" value={roomData.price} onChange={handleChange} isInvalid={!!errors.price} />
+                  <Form.Control.Feedback type="invalid">{errors.price}</Form.Control.Feedback>
+                </Form.Group>
 
-      <Button type="submit" variant="primary" className="mt-2">Add Room</Button>
+                {/* Image Upload */}
+                <Form.Group className="mb-3">
+                  <Form.Label>Room Image</Form.Label>
+                  <Form.Control type="file" accept="image/*" onChange={handleImageUpload} isInvalid={!!errors.image} />
+                  <Form.Control.Feedback type="invalid">{errors.image}</Form.Control.Feedback>
+                </Form.Group>
 
-     
-    </Form>
+                {/* Display Image Preview */}
+                {roomData.image && (
+                  <div className="text-center">
+                    <img src={roomData.image} alt="Room" className="img-fluid rounded" style={{ maxWidth: "100%", maxHeight: "200px", objectFit: "cover" }} />
+                  </div>
+                )}
+
+                {/* Submit Button */}
+                <div className="text-center">
+                  <Button type="submit" variant="primary" className="mt-3 w-100">Add Room</Button>
+                </div>
+
+              </Form>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

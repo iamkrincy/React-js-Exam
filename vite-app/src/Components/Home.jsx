@@ -1,10 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import { FaWifi } from "react-icons/fa";
 import { FaPersonSwimming } from "react-icons/fa6";
 import { Ri24HoursFill } from "react-icons/ri";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 
 const Home = () => {
+
+  const { user } = useSelector((state) => state.userReducer);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, [user, navigate]);
+
+
   return (
     <Container fluid className="p-0">
       {/* Hero Section */}

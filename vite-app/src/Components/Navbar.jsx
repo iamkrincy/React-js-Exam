@@ -38,7 +38,7 @@ const {user} = useSelector(state => state.userReducer);
             {user ? (
               <>
                 <Nav.Link as={Link} to="/profile">👤 {user.displayName || "Profile"}</Nav.Link>
-                <Button variant="outline-light" onClick={handleLogout} className="ms-2">
+                <Button variant="outline-dark" onClick={handleLogout} className="ms-2">
                   🚪 Sign Out
                 </Button>
               </>
